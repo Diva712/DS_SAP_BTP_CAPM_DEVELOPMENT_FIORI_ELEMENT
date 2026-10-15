@@ -1,0 +1,177 @@
+### 1. Get the Service Document.
+http://localhost:4004/odata/v4/CatalogService
+
+### 2. Get the Service metadata
+http://localhost:4004/odata/v4/CatalogService/$metadata
+
+### 3. Get all of the customer records
+GET http://localhost:4004/odata/v4/CatalogService/CustomerSet
+
+### 4. Get specfic the customer records
+GET http://localhost:4004/odata/v4/CatalogService/CustomerSet('CUST101')
+
+### 5. Get specfic the customer records . 2nd way
+GET http://localhost:4004/odata/v4/CatalogService/CustomerSet/CUST002
+
+### 6. Get all of the sales order records
+GET http://localhost:4004/odata/v4/CatalogService/OrderSet
+
+### 7. Get specfic the Sales Order records
+GET http://localhost:4004/odata/v4/CatalogService/OrderSet('SO-2013')
+
+### 8. Get all of the sales order items records
+GET http://localhost:4004/odata/v4/CatalogService/ItemSet
+
+### 9. Get a Specific sales order item record
+GET http://localhost:4004/odata/v4/CatalogService/ItemSet(Item_Id=10,Parent_Order_Id='SO-1014')
+
+### 10. Get a Specific sales order item record using navigation property
+GET http://localhost:4004/odata/v4/CatalogService/OrderSet('SO-2013')/Items(Item_Id=30)
+
+### 11. Get all sales order items of a specific sales order
+GET http://localhost:4004/odata/v4/CatalogService/OrderSet('SO-1014')/Items
+
+### 12. Get all sales orders of a specific customer ales order
+GET http://localhost:4004/odata/v4/CatalogService/CustomerSet('CUST010')/orders
+
+### 13. post call to create a new customer
+POST http://localhost:4004/odata/v4/CatalogService/CustomerSet
+Content-Type: application/json
+
+   {
+      "Cust_id": "CUST101",
+      "CustomerName": "TechCorp Sol 101",
+      "Address": "123 Innovation Way 101",
+      "City": "New York",
+      "Country": "USA",
+      "Email": "info101@techcorp.com",
+      "PhoneNumber": "+1-555-0101-0101"
+    }
+
+### 14. post call to create a new sales Order
+POST http://localhost:4004/odata/v4/CatalogService/OrderSet
+Content-Type: application/json
+
+{
+  "Order_Id": "SO-2012",
+  "OrderDate": "2025-02-01",
+  "customer_Cust_id": "CUST101",
+  "Status": "OPEN",
+  "NetValue": 1500,
+  "Currency_code": "INR"
+}
+
+### 15. post call to create a new sales Order item
+POST http://localhost:4004/odata/v4/CatalogService/ItemSet
+Content-Type: application/json
+
+{
+  "Item_Id": 10,
+  "Parent_Order_Id": "SO-2012",
+  "ProductCode": "PRD-50",
+  "ProductDesc": "Office Laptop",
+  "Quantity": 4,
+  "UOM": "EA",
+  "NetPrice": 325,
+  "Currency_code": "INR"
+}
+
+### 16. Deep Insert
+POST http://localhost:4004/odata/v4/CatalogService/OrderSet
+Content-Type: application/json
+
+{
+  "Order_Id": "SO-2013",
+  "OrderDate": "2026-02-01",
+  "customer_Cust_id": "CUST101",
+  "Status": "OPEN",
+  "NetValue": 2500,
+  "Currency_code": "USD",
+  "Items" : [
+    {
+        "Item_Id": 10,
+        "Parent_Order_Id": "SO-2013",
+        "ProductCode": "PRD-60",
+        "ProductDesc": "Office LAMP",
+        "Quantity": 2,
+        "UOM": "EA",
+        "NetPrice": 425,
+        "Currency_code": "USD"  
+    },
+    {
+        "Item_Id": 30,
+        "Parent_Order_Id": "SO-2013",
+        "ProductCode": "PRD-70",
+        "ProductDesc": "Office CHAIR",
+        "Quantity": 2,
+        "UOM": "EA",
+        "NetPrice": 455,
+        "Currency_code": "USD"  
+    }
+  ]
+}
+
+### 17. Patch - for customer
+PATCH http://localhost:4004/odata/v4/CatalogService/CustomerSet('CUST101')
+Content-Type: application/json
+
+{
+      "CustomerName": "TechCorp Sol 9001",
+      "Address": "123 Innovation Way 9001"
+    }
+
+### 18. Patch - for sales order
+PATCH http://localhost:4004/odata/v4/CatalogService/OrderSet('SO-2013')
+Content-Type: application/json
+
+{
+  "Status": "PAID",
+  "NetValue": 2500,
+  "Currency_code": "INR"
+}
+
+### 19. Patch - for sales order ITEMS
+PATCH http://localhost:4004/odata/v4/CatalogService/ItemSet(Item_Id=10,Parent_Order_Id='SO-2013')
+Content-Type: application/json
+
+{
+        "ProductCode": "PRD-601",
+        "ProductDesc": "Office LAMP601",
+        "Quantity": 4 
+}
+
+### 20. PUT - for customer
+PUT http://localhost:4004/odata/v4/CatalogService/CustomerSet('CUST101')
+Content-Type: application/json
+
+{
+      "CustomerName": "TechCorp Sol PUT",
+      "Address": "123 Innovation Way PUT 9001"
+}
+
+### 21. DELETE - for customer
+DELETE http://localhost:4004/odata/v4/CatalogService/CustomerSet('CUST101')
+
+### 22. DELETE - for ORDER
+DELETE http://localhost:4004/odata/v4/CatalogService/OrderSet('SO-2013')
+
+### 23. DELETE - for ORDER items
+DELETE http://localhost:4004/odata/v4/CatalogService/ItemSet(Item_Id=10,Parent_Order_Id='SO-1014')
+
+### 23. $filter - Query Option
+GET http://localhost:4004/odata/v4/CatalogService/CustomerSet?$filter=Country eq 'India'
+
+### 24. $filter - Query Option
+GET http://localhost:4004/odata/v4/CatalogService/OrderSet?$filter=Status eq 'Open' and NetValue lt 1000
+
+### 25. $select - Query Option
+GET http://localhost:4004/odata/v4/CatalogService/CustomerSet?$select=Cust_id,CustomerName,Country
+
+### 26. $expand - Query Option
+GET http://localhost:4004/odata/v4/CatalogService/CustomerSet('CUST004')?$expand=orders($expand=Items)
+
+### 27. $count - Query Option
+GET http://localhost:4004/odata/v4/CatalogService/CustomerSet?$count=true
+
+### 28. INSTANCE BOUND FUNCTION FOR GETTING THE TOTAL PURCHASE IN LAST ONE YEAR
+GET http://localhost:4004/odata/v4/CatalogService/CustomerSet('CUST101')/customerLoyaltyLevel

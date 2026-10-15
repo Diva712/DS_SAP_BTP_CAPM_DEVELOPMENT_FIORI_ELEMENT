@@ -1,0 +1,11 @@
+{
+    "SAP HANA Database Explorer.ShowXsAdvancedConnections": true,
+    "sqltools.connections": [
+        {
+            "previewLimit": 500000,
+            "driver": "SQLite",
+            "name": "mydb",
+            "database": "db.sqlite"
+        }
+    ]
+}

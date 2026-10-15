@@ -1,0 +1,13 @@
+Cust_ID;CustomerName;Address;City;Country;Email;PhoneNumber
+CUST001;TechCorp Solutions;123 Innovation Way;New York;USA;info@techcorp.com;+1-555-0101
+CUST002;Global Logistics;456 Shipping Lane;Berlin;Germany;contact@globallog.de;+49-30-123456
+CUST003;BrightFuture Pvt Ltd;78 Sunrise Avenue;Mumbai;India;support@brightfuture.in;+91-9823456789
+CUST004;Nordic Trading Co;12 Fjord Street;Oslo;Norway;contact@nordictrade.no;+47-22334455
+CUST005;Skyline Enterprises;99 Downtown Blvd;Toronto;Canada;info@skyline.ca;+1-416-7788990
+CUST006;Pacific Tech Systems;55 Ocean Drive;Sydney;Australia;hello@pacifictech.au;+61-2-99887766
+CUST007;GreenFields Agro;210 Farm Road;Nairobi;Kenya;info@greenfields.ke;+254-712345678
+CUST008;Metro Retail Group;45 Market Street;London;UK;sales@metroretail.co.uk;+44-20-79460000
+CUST009;Alpha Digital Services;88 Cyber Park;Bangalore;India;contact@alphadigital.in;+91-9988776655
+CUST010;BlueWave Shipping;320 Harbor Road;Singapore;Singapore;support@bluewave.sg;+65-61234567
+CUST011;Desert Sands Tourism;5 Palm Boulevard;Dubai;UAE;info@desertsands.ae;+971-4-3344556
+CUST012;Andes Mining Corp;77 Copper Lane;Santiago;Chile;admin@andesmining.cl;+56-2-22334455
