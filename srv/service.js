@@ -23,6 +23,10 @@ module.exports = cds.service.impl(function () {
 
 
     this.on('cancelOpenOrderForDate', async (req) => {
+        //We can handle securties at the service impl level
+        req.user.is('Editor') || req.reject(403)
+
+
         const { day, month, year } = req.data;
         const tx = cds.tx(req);
 

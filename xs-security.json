@@ -1,5 +1,76 @@
 {
-  "scopes": [],
-  "attributes": [],
-  "role-templates": []
+  "xsappname": "sales",
+  "tenant-mode": "shared",
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.Edit",
+      "description": "Edit"
+    },
+    {
+      "name": "$XSAPPNAME.Display",
+      "description": "Display"
+    },
+    {
+      "name": "$XSAPPNAME.Delete",
+      "description": "Delete"
+    },
+    {
+      "name": "$XSAPPNAME.Create",
+      "description": "Create"
+    }
+  ],
+  "foreign-scope-references": [
+    "$ACCEPT_GRANTED_SCOPES"
+  ],
+  "authorities": [
+    "$ACCEPT_GRANTED_AUTHORITIES"
+  ],
+  "attributes": [
+    {
+      "name": "Country",
+      "description": "Country",
+      "valueType": "string"
+    },
+    {
+      "name": "OrderStatus",
+      "description": "OrderStatus",
+      "valueType": "string"
+    }
+  ],
+  "role-templates": [
+    {
+      "name": "Editor",
+      "description": "Editor can perform CRUD Operation",
+      "scope-references": [
+        "$XSAPPNAME.Edit",
+        "$XSAPPNAME.Delete",
+        "$XSAPPNAME.Create",
+        "$XSAPPNAME.Display"
+      ]
+    },
+    {
+      "name": "Viewer",
+      "description": "Viewer can READ data",
+      "scope-references": [
+        "$XSAPPNAME.Display"
+      ],
+       "attribute-references": [
+        "Country",
+        "OrderStatus"
+      ]
+    }
+  ],
+  "oauth2-configuration": {
+    "token-validity": 900,
+    "refresh-token-validity": 1800,
+    "redirect-uris": [
+      "https://*.cf.us10-001.hana.ondemand.com/login/callback"
+      
+    ],
+    "autoapprove": "false",
+    "system-attributes": [
+      "groups",
+      "rolecollections"
+    ]
+  }
 }

@@ -1,20 +1,80 @@
 using ds.salesapp as db from '../db/schema';
 
-service CatalogService @(path: 'CatalogService'){
+service CatalogService @(
+    path    : 'CatalogService',
+    requires: 'authenticated-user'
+) {
 
-    entity CustomerSet as projection on db.Customer
-    actions{function customerLoyaltyLevel() returns String};
-    
-    entity OrderSet as projection on db.SalesOrder
-    actions{action markOrderAsPaid() returns OrderSet};
-    
+    entity CustomerSet @(restrict: [
+        {
+            grant: [
+                Read,
+                Write
+            ],
+            to   : 'Editor'
+        },
+        {
+            grant: [Read],
+            to   : 'Viewer',
+            where: 'Country = $user.Country'
+        }
+    ]) as projection on db.Customer
+        actions {
 
-    entity ItemSet as projection on db.SalesOrderItem;
+            @restrict: [{to: [
+                'Editor',
+                'Viewer'
+            ]}]
+            function customerLoyaltyLevel() returns String
+        };
 
-    action cancelOpenOrderForDate(day: Integer, month: Integer, year: Integer) returns String;
+    entity OrderSet @(restrict: [
+        {
+            grant: [
+                Read,
+                Write
+            ],
+            to   : 'Editor'
+        },
+        {
+            grant: [Read],
+            to   : 'Viewer',
+            where: 'Status = ''Open'''
+        },
+        {
+            grant: [Create],
+            to   : 'Viewer'
 
-    function totalSales(year:Integer) returns Decimal;
+        }
+    ]) as projection on db.SalesOrder
+        actions {
+            @restrict: [{to: [
+                'Editor',
+                'Viewer'
+            ]}]
+            action markOrderAsPaid() returns OrderSet
+        };
+
+
+    entity ItemSet @(restrict: [
+        {
+            grant: [
+                Read,
+                Write
+            ],
+            to   : 'Editor'
+        },
+        {
+            grant: [
+                Read,
+                Create
+            ],
+            to   : 'Viewer'
+        }
+    ]) as projection on db.SalesOrderItem;
+
+    action   cancelOpenOrderForDate(day: Integer, month: Integer, year: Integer) returns String;
+
+    @requires: 'Editor'
+    function totalSales(year: Integer)                                           returns Decimal;
 }
-
-
-
