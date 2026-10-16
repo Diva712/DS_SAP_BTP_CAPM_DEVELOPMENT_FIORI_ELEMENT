@@ -1,23 +1,35 @@
 ### 1. Get the Service Document.
 http://localhost:4004/odata/v4/CatalogService
+Authorization: Basic DG_India:
 
 ### 2. Get the Service metadata
 http://localhost:4004/odata/v4/CatalogService/$metadata
+Authorization: Basic Diva_Gupta:
 
 ### 3. Get all of the customer records
 GET http://localhost:4004/odata/v4/CatalogService/CustomerSet
+Authorization: Basic DG_USA:
 
 ### 4. Get specfic the customer records
-GET http://localhost:4004/odata/v4/CatalogService/CustomerSet('CUST101')
+GET http://localhost:4004/odata/v4/CatalogService/CustomerSet('CUST001')
+Authorization: Basic Diva_Gupta:
 
 ### 5. Get specfic the customer records . 2nd way
 GET http://localhost:4004/odata/v4/CatalogService/CustomerSet/CUST002
 
 ### 6. Get all of the sales order records
 GET http://localhost:4004/odata/v4/CatalogService/OrderSet
+Authorization: Basic Diva_Gupta:
+
+
+
+### 6. Get all of the sales order records
+GET http://localhost:4004/odata/v4/CatalogService/OrderSet
+Authorization: Basic DG_India:
+
 
 ### 7. Get specfic the Sales Order records
-GET http://localhost:4004/odata/v4/CatalogService/OrderSet('SO-2013')
+GET http://localhost:4004/odata/v4/CatalogService/OrderSet('SO-1012')
 
 ### 8. Get all of the sales order items records
 GET http://localhost:4004/odata/v4/CatalogService/ItemSet
@@ -29,13 +41,14 @@ GET http://localhost:4004/odata/v4/CatalogService/ItemSet(Item_Id=10,Parent_Orde
 GET http://localhost:4004/odata/v4/CatalogService/OrderSet('SO-2013')/Items(Item_Id=30)
 
 ### 11. Get all sales order items of a specific sales order
-GET http://localhost:4004/odata/v4/CatalogService/OrderSet('SO-1014')/Items
+GET http://localhost:4004/odata/v4/CatalogService/OrderSet('SO-1012')/Items
 
 ### 12. Get all sales orders of a specific customer ales order
-GET http://localhost:4004/odata/v4/CatalogService/CustomerSet('CUST010')/orders
+GET http://localhost:4004/odata/v4/CatalogService/CustomerSet('CUST101')/orders
 
 ### 13. post call to create a new customer
 POST http://localhost:4004/odata/v4/CatalogService/CustomerSet
+Authorization: Basic DG_USA:
 Content-Type: application/json
 
    {
@@ -50,47 +63,49 @@ Content-Type: application/json
 
 ### 14. post call to create a new sales Order
 POST http://localhost:4004/odata/v4/CatalogService/OrderSet
+Authorization: Basic Diva_Gupta:
 Content-Type: application/json
 
 {
-  "Order_Id": "SO-2012",
+  "Order_Id": "SO-2014",
   "OrderDate": "2025-02-01",
   "customer_Cust_id": "CUST101",
-  "Status": "OPEN",
-  "NetValue": 1500,
+  "Status": "Open",
+  "NetValue": 25000,
   "Currency_code": "INR"
 }
 
 ### 15. post call to create a new sales Order item
 POST http://localhost:4004/odata/v4/CatalogService/ItemSet
+Authorization: Basic DG_USA:
 Content-Type: application/json
 
 {
-  "Item_Id": 10,
+  "Item_Id": 50,
   "Parent_Order_Id": "SO-2012",
   "ProductCode": "PRD-50",
   "ProductDesc": "Office Laptop",
   "Quantity": 4,
   "UOM": "EA",
-  "NetPrice": 325,
+  "NetPrice": 100,
   "Currency_code": "INR"
 }
 
 ### 16. Deep Insert
 POST http://localhost:4004/odata/v4/CatalogService/OrderSet
+Authorization: Basic DG_USA:
 Content-Type: application/json
 
 {
-  "Order_Id": "SO-2013",
-  "OrderDate": "2026-02-01",
+  "Order_Id": "SO-2038",
+  "OrderDate": "2025-02-01",
   "customer_Cust_id": "CUST101",
-  "Status": "OPEN",
-  "NetValue": 2500,
+  "Status": "Open",
+  "NetValue": 20000,
   "Currency_code": "USD",
   "Items" : [
     {
         "Item_Id": 10,
-        "Parent_Order_Id": "SO-2013",
         "ProductCode": "PRD-60",
         "ProductDesc": "Office LAMP",
         "Quantity": 2,
@@ -100,7 +115,6 @@ Content-Type: application/json
     },
     {
         "Item_Id": 30,
-        "Parent_Order_Id": "SO-2013",
         "ProductCode": "PRD-70",
         "ProductDesc": "Office CHAIR",
         "Quantity": 2,
@@ -153,7 +167,7 @@ Content-Type: application/json
 DELETE http://localhost:4004/odata/v4/CatalogService/CustomerSet('CUST101')
 
 ### 22. DELETE - for ORDER
-DELETE http://localhost:4004/odata/v4/CatalogService/OrderSet('SO-2013')
+DELETE http://localhost:4004/odata/v4/CatalogService/OrderSet('SO-1012')
 
 ### 23. DELETE - for ORDER items
 DELETE http://localhost:4004/odata/v4/CatalogService/ItemSet(Item_Id=10,Parent_Order_Id='SO-1014')
@@ -173,5 +187,32 @@ GET http://localhost:4004/odata/v4/CatalogService/CustomerSet('CUST004')?$expand
 ### 27. $count - Query Option
 GET http://localhost:4004/odata/v4/CatalogService/CustomerSet?$count=true
 
+### 27. INSTANCE BOUND ACTION FOR CHANGING THE STATUS FROM OPEN TO PAID
+POST http://localhost:4004/odata/v4/CatalogService/OrderSet('SO-1028')/markOrderAsPaid
+Authorization: Basic Diva_Gupta:
+Content-Type: application/json
+
+{
+    
+}
+
+### 28. NON-INSTANCE BOUND ACTION FOR CHANGING THE STATUS FROM OPEN TO CANCELLED FOR A PARTICULAR DATE
+POST http://localhost:4004/odata/v4/CatalogService/cancelOpenOrderForDate
+Authorization: Basic DG_India:
+Content-Type: application/json
+
+{
+  "day": 15,
+  "month": 2,
+  "year": 2024
+}
+
 ### 28. INSTANCE BOUND FUNCTION FOR GETTING THE TOTAL PURCHASE IN LAST ONE YEAR
-GET http://localhost:4004/odata/v4/CatalogService/CustomerSet('CUST101')/customerLoyaltyLevel
+GET http://localhost:4004/odata/v4/CatalogService/CustomerSet('CUST016')/customerLoyaltyLevel
+Authorization: Basic DG_USA:
+
+### 29. INSTANCE BOUND FUNCTION FOR GETTING THE TOTAL PURCHASE IN LAST ONE YEAR
+GET http://localhost:4004/odata/v4/CatalogService/totalSales(year=2025)
+Authorization: Basic Diva_Gupta:
+
+

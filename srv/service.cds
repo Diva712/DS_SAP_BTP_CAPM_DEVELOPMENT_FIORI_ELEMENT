@@ -8,19 +8,18 @@ service CatalogService @(
     entity CustomerSet @(restrict: [
         {
             grant: [
-                Read,
-                Write
+                'READ',
+                'WRITE'
             ],
             to   : 'Editor'
         },
         {
-            grant: [Read],
+            grant: ['READ'],
             to   : 'Viewer',
             where: 'Country = $user.Country'
         }
     ]) as projection on db.Customer
         actions {
-
             @restrict: [{to: [
                 'Editor',
                 'Viewer'
@@ -31,21 +30,20 @@ service CatalogService @(
     entity OrderSet @(restrict: [
         {
             grant: [
-                Read,
-                Write
+                'READ',
+                'WRITE'
             ],
             to   : 'Editor'
         },
         {
-            grant: [Read],
+            grant: ['READ'],
             to   : 'Viewer',
             where: 'Status = ''Open'''
         },
         {
-            grant: [Create],
+            grant: ['CREATE'],
             to   : 'Viewer'
-
-        }
+        },
     ]) as projection on db.SalesOrder
         actions {
             @restrict: [{to: [
@@ -55,19 +53,18 @@ service CatalogService @(
             action markOrderAsPaid() returns OrderSet
         };
 
-
     entity ItemSet @(restrict: [
         {
             grant: [
-                Read,
-                Write
+                'READ',
+                'WRITE'
             ],
             to   : 'Editor'
         },
         {
             grant: [
-                Read,
-                Create
+                'READ',
+                'CREATE'
             ],
             to   : 'Viewer'
         }

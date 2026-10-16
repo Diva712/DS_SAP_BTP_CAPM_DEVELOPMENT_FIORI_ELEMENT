@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "dependencies": {
     "@sap/cds": "^10",
-    "@sap/xssec": "^4"
+    "@sap/xssec": "^4.15.0"
   },
   "devDependencies": {
     "@cap-js/sqlite": "^3"
@@ -12,10 +12,42 @@
     "start": "cds-serve"
   },
   "private": true,
-  "cds": {
+    "cds": {
     "requires": {
-      "[production]": {
-        "auth": "xsuaa"
+      "auth": {
+        "[production]": {
+          "strategy": "xsuaa"
+        },
+        "[development]": {
+          "strategy": "mocked",
+          "users": {
+            "Diva_Gupta": {
+              "roles": [
+                "Editor"
+              ]
+            },
+            "DG_India": {
+              "roles": [
+                "Viewer"
+              ],
+              "userAttributes": {
+                "Country": [
+                  "India"
+                ]
+              }
+            },
+            "DG_USA": {
+              "roles": [
+                "Viewer"
+              ],
+              "userAttributes": {
+                "Country": [
+                  "USA"
+                ]
+              }
+            }
+          }
+        }
       }
     }
   }

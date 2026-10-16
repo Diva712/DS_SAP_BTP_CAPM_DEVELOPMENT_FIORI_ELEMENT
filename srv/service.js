@@ -1,4 +1,5 @@
 const cds = require('@sap/cds');
+const { message } = require('@sap/cds/lib/log/cds-error');
 const { SELECT, UPDATE } = require('@sap/cds/lib/ql/cds-ql');
 
 module.exports = cds.service.impl(function () {
@@ -8,38 +9,17 @@ module.exports = cds.service.impl(function () {
         }
     });
 
-    this.on('READ', 'OrderSet', async (req) => {
-        const tx = cds.tx(req);
-        return await tx.run(
-            SELECT.from('ds.salesapp.SalesOrder').where({ Status: 'Open' })
-        )
-    });
+    // this.on('READ', 'OrderSet', async (req) => {
+    //     const tx = cds.tx(req);
+    //     return await tx.run(
+    //         SELECT.from('ds.salesapp.SalesOrder').where({ Status: 'Open' })
+    //     )
+    // });
     this.after('READ', 'ItemSet', (items) => {
         for (const item of items) {
             item.Total_Price = `${item.Quantity * item.NetPrice} ${item.Currency_code}`;
         }
     });
-
-
-
-    this.on('cancelOpenOrderForDate', async (req) => {
-        //We can handle securties at the service impl level
-        req.user.is('Editor') || req.reject(403)
-
-
-        const { day, month, year } = req.data;
-        const tx = cds.tx(req);
-
-        const formatDate = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-
-        const updatedOrders = await tx.run(
-            UPDATE('ds.salesapp.SalesOrder')
-                .set({ Status: 'Cancelled' })
-                .where({ Status: 'Open', OrderDate: formatDate })
-        );
-        return { message: `${updatedOrders} orders are cancelled for ${day}-${month}-${year}` };
-    });
-
 
     this.on('markOrderAsPaid', 'OrderSet', async (req) => {
         const id = req.params[0].Order_Id;
@@ -54,8 +34,22 @@ module.exports = cds.service.impl(function () {
         return updatedOrder;
     });
 
+    this.on('cancelOpenOrderForDate', async (req) => {
+        req.user.is('Editor') || req.reject(403)
+        const { day, month, year } = req.data;
+        const tx = cds.tx(req);
 
-        this.on('customerLoyaltyLevel','CustomerSet', async (req) => {
+        const formatDate = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+
+       const updatedOrders = await tx.run(
+            UPDATE('ds.salesapp.SalesOrder')
+                .set({ Status: 'Cancelled' })
+                .where({ Status: 'Open', OrderDate: formatDate })
+        );
+       return { message: `${updatedOrders} orders are cancelled for ${day}-${month}-${year}`}; 
+    });
+
+    this.on('customerLoyaltyLevel','CustomerSet', async (req) => {
         const id = req.params[0].Cust_id;
         const tx = cds.tx(req);
 
@@ -82,7 +76,7 @@ module.exports = cds.service.impl(function () {
         }
     });
 
-        this.on('totalSales', async (req) => {
+    this.on('totalSales', async (req) => {
         const {year} = req.data;
         const tx = cds.tx(req);
 
@@ -93,7 +87,5 @@ module.exports = cds.service.impl(function () {
                         OrderDate <= ${year + '-12-31'}` );
 
         return   total || 0;
-    });
-
+    })
 })
-

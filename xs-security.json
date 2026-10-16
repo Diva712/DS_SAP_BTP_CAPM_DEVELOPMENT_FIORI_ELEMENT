@@ -4,19 +4,19 @@
   "scopes": [
     {
       "name": "$XSAPPNAME.Edit",
-      "description": "Edit"
+      "description": "edit"
     },
     {
       "name": "$XSAPPNAME.Display",
-      "description": "Display"
+      "description": "display"
     },
     {
       "name": "$XSAPPNAME.Delete",
-      "description": "Delete"
+      "description": "delete"
     },
     {
       "name": "$XSAPPNAME.Create",
-      "description": "Create"
+      "description": "create"
     }
   ],
   "foreign-scope-references": [
@@ -33,28 +33,28 @@
     },
     {
       "name": "OrderStatus",
-      "description": "OrderStatus",
+      "description": "Order Status",
       "valueType": "string"
     }
   ],
   "role-templates": [
     {
       "name": "Editor",
-      "description": "Editor can perform CRUD Operation",
+      "description": "Can perform CRUD Operation",
       "scope-references": [
         "$XSAPPNAME.Edit",
         "$XSAPPNAME.Delete",
-        "$XSAPPNAME.Create",
-        "$XSAPPNAME.Display"
+        "$XSAPPNAME.Display",
+        "$XSAPPNAME.Create"
       ]
     },
     {
       "name": "Viewer",
-      "description": "Viewer can READ data",
+      "description": "Read The data only",
       "scope-references": [
         "$XSAPPNAME.Display"
       ],
-       "attribute-references": [
+      "attribute-references": [
         "Country",
         "OrderStatus"
       ]
@@ -64,9 +64,7 @@
     "token-validity": 900,
     "refresh-token-validity": 1800,
     "redirect-uris": [
-      "https://*.cf.us10-001.hana.ondemand.com/login/callback"
-      
-    ],
+      "https://*.cfapps.us10-001.hana.ondemand.com/login/callback"    ],
     "autoapprove": "false",
     "system-attributes": [
       "groups",
