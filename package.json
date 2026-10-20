@@ -3,15 +3,18 @@
   "version": "1.0.0",
   "dependencies": {
     "@cap-js/hana": "^3.1.2",
+    "@sap/approuter": "23.3.0",
     "@sap/cds": "^10",
     "@sap/xssec": "^4.15.0"
   },
   "devDependencies": {
     "@cap-js/sqlite": "^3",
-    "@sap/cds-dk": "^10.1.0"
+    "@sap/cds-dk": "^7.1.1",
+    "cds-plugin-ui5": "^0.17.0"
   },
   "scripts": {
-    "start": "cds-serve"
+    "start": "cds-serve",
+    "watch-salesorder": "cds watch --open ds.sales.salesorder/index.html?sap-ui-xx-viewCache=false --livereload false"
   },
   "private": true,
   "cds": {
@@ -63,5 +66,11 @@
         }
       }
     }
-  }
+  },
+  "workspaces": [
+    "app/*"
+  ],
+  "sapux": [
+    "app/salesorder"
+  ]
 }

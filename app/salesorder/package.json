@@ -1,0 +1,24 @@
+{
+  "name": "salesorder",
+  "version": "0.0.1",
+  "description": "Sales Order Application",
+  "keywords": [
+    "ui5",
+    "openui5",
+    "sapui5"
+  ],
+  "main": "webapp/index.html",
+  "dependencies": {
+    "@sap/approuter": "23.3.0",
+    "@sap/cds-dk": "^7.1.1"
+  },
+  "devDependencies": {
+    "@sap-ux/eslint-plugin-fiori-tools": "^10.0.0",
+    "@sap/ux-ui5-tooling": "1",
+    "@ui5/cli": "^2.14.20",
+    "eslint": "^10"
+  },
+  "scripts": {
+    "deploy-config": "npx -p @sap/ux-ui5-tooling fiori add deploy-config cf"
+  }
+}

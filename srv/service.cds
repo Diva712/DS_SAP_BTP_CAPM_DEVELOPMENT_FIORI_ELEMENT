@@ -5,6 +5,7 @@ service CatalogService @(
     requires: 'authenticated-user'
 ) {
 
+    @odata.draft.enabled
     entity CustomerSet @(restrict: [
         {
             grant: [
