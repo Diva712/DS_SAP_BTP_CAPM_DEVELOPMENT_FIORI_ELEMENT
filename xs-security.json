@@ -1,22 +1,30 @@
 {
-  "xsappname": "sales",
+  "xsappname": "sales_new",
   "tenant-mode": "shared",
   "scopes": [
     {
       "name": "$XSAPPNAME.Edit",
-      "description": "edit"
+      "description": "Edit"
     },
     {
       "name": "$XSAPPNAME.Display",
-      "description": "display"
+      "description": "Display"
     },
     {
       "name": "$XSAPPNAME.Delete",
-      "description": "delete"
+      "description": "Delete"
     },
     {
       "name": "$XSAPPNAME.Create",
-      "description": "create"
+      "description": "Create"
+    },
+    {
+      "name": "$XSAPPNAME.Editor",
+      "description": "Editor"
+    },
+    {
+      "name": "$XSAPPNAME.Viewer",
+      "description": "Viewer"
     }
   ],
   "foreign-scope-references": [
@@ -45,14 +53,16 @@
         "$XSAPPNAME.Edit",
         "$XSAPPNAME.Delete",
         "$XSAPPNAME.Display",
-        "$XSAPPNAME.Create"
+        "$XSAPPNAME.Create",
+        "$XSAPPNAME.Editor"
       ]
     },
     {
       "name": "Viewer",
       "description": "Read The data only",
       "scope-references": [
-        "$XSAPPNAME.Display"
+        "$XSAPPNAME.Display",
+        "$XSAPPNAME.Viewer"
       ],
       "attribute-references": [
         "Country",

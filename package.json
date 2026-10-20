@@ -2,17 +2,19 @@
   "name": "sales",
   "version": "1.0.0",
   "dependencies": {
+    "@cap-js/hana": "^3.1.2",
     "@sap/cds": "^10",
     "@sap/xssec": "^4.15.0"
   },
   "devDependencies": {
-    "@cap-js/sqlite": "^3"
+    "@cap-js/sqlite": "^3",
+    "@sap/cds-dk": "^10.1.0"
   },
   "scripts": {
     "start": "cds-serve"
   },
   "private": true,
-    "cds": {
+  "cds": {
     "requires": {
       "auth": {
         "[production]": {
@@ -43,6 +45,17 @@
               "userAttributes": {
                 "Country": [
                   "USA"
+                ]
+              }
+            },
+            "DG_India_Canada": {
+              "roles": [
+                "Viewer"
+              ],
+              "userAttributes": {
+                "Country": [
+                  "India",
+                  "Canada"
                 ]
               }
             }

@@ -4,7 +4,7 @@ namespace ds.salesapp;
 
 entity Customer : managed {
    key Cust_id : String(10);
-   CustomerName : String(20);
+   CustomerName : String(50);
    Address      : String(50);
    City         : String(10);
    Country      : String(20);

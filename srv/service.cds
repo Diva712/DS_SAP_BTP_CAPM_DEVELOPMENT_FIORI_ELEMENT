@@ -16,7 +16,7 @@ service CatalogService @(
         {
             grant: ['READ'],
             to   : 'Viewer',
-            where: 'Country = $user.Country'
+            where: 'Country in $user.Country'
         }
     ]) as projection on db.Customer
         actions {
