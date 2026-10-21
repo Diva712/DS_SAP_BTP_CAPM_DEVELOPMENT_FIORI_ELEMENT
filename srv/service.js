@@ -15,6 +15,21 @@ module.exports = cds.service.impl(function () {
     //         SELECT.from('ds.salesapp.SalesOrder').where({ Status: 'Open' })
     //     )
     // });
+
+        this.before('NEW', 'ItemSet.drafts', async (req) => {
+        const { Parent_Order_Id } = req.data;
+        const existingItems = await SELECT.from('CatalogService.ItemSet.drafts')
+            .where({ Parent_Order_Id: Parent_Order_Id })
+            .orderBy('Item_Id desc');
+
+        if (existingItems.length === 0) {
+            req.data.Item_Id = 10;
+        } else {
+            const highestItem = existingItems[0].Item_Id;
+            req.data.Item_Id = highestItem + 10;
+        }
+    });
+
     this.after('READ', 'ItemSet', (items) => {
         for (const item of items) {
             item.Total_Price = `${item.Quantity * item.NetPrice} ${item.Currency_code}`;

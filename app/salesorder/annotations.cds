@@ -7,6 +7,7 @@ annotate service.CustomerSet with {
     Country      @Common.Label: 'Country';
     Email        @Common.Label: 'Email';
     PhoneNumber  @Common.Label: 'Phone';
+    Address @Common.Label: 'Address';
     modifiedAt   @Common.Label: 'Changed At';
     modifiedBy   @Common.Label: 'Changed By';
     createdAt    @Common.Label: 'Created At';
@@ -83,6 +84,7 @@ annotate service.CustomerSet with @(
     ],
 
     UI.FieldGroup #GeneralInfo: {Data: [
+        {Value: CustomerName},
         {Value: Address},
         {Value: City},
         {Value: Email},

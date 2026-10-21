@@ -1,0 +1,182 @@
+﻿code;symbol;minorUnit;name;descr
+AED;AED;2;UAE Dirham;UAE Dirham
+AFN;AFN;0;Afghani;Afghani
+ALL;ALL;0;Lek;Lek
+AMD;AMD;2;Armenian Dram;Armenian Dram
+ANG;ANG;2;Netherlands Antillean Guilder;Netherlands Antillean Guilder
+AOA;AOA;2;Kwanza;Kwanza
+ARS;ARS;2;Argentine Peso;Argentine Peso
+AUD;A$;2;Australian Dollar;Australian Dollar
+AWG;AWG;2;Aruban Florin;Aruban Florin
+AZN;AZN;2;Azerbaijan Manat;Azerbaijan Manat
+BAM;BAM;2;Convertible Mark;Convertible Mark
+BBD;BBD;2;Barbados Dollar;Barbados Dollar
+BDT;BDT;2;Taka;Taka
+BGN;BGN;2;Bulgarian Lev;Bulgarian Lev
+BHD;BHD;3;Bahraini Dinar;Bahraini Dinar
+BIF;BIF;0;Burundi Franc;Burundi Franc
+BMD;BMD;2;Bermudian Dollar;Bermudian Dollar
+BND;BND;2;Brunei Dollar;Brunei Dollar
+BOB;BOB;2;Boliviano;Boliviano
+BOV;BOV;2;Mvdol;Mvdol
+BRL;R$;2;Brazilian Real;Brazilian Real
+BSD;BSD;2;Bahamian Dollar;Bahamian Dollar
+BTN;BTN;2;Ngultrum;Ngultrum
+BWP;BWP;2;Pula;Pula
+BYN;BYN;2;Belarusian Ruble;Belarusian Ruble
+BZD;BZD;2;Belize Dollar;Belize Dollar
+CAD;CA$;2;Canadian Dollar;Canadian Dollar
+CDF;CDF;2;Congolese Franc;Congolese Franc
+CHE;CHE;2;WIR Euro;WIR Euro
+CHF;CHF;2;Swiss Franc;Swiss Franc
+CHW;CHW;2;WIR Franc;WIR Franc
+CLF;CLF;4;Unidad de Fomento;Unidad de Fomento
+CLP;CLP;0;Chilean Peso;Chilean Peso
+CNY;CN¥;2;Yuan Renminbi;Yuan Renminbi
+COP;COP;2;Colombian Peso;Colombian Peso
+COU;COU;2;Unidad de Valor Real;Unidad de Valor Real
+CRC;CRC;2;Costa Rican Colon;Costa Rican Colon
+CUC;CUC;2;Peso Convertible;Peso Convertible
+CUP;CUP;2;Cuban Peso;Cuban Peso
+CVE;CVE;2;Cabo Verde Escudo;Cabo Verde Escudo
+CZK;CZK;2;Czech Koruna;Czech Koruna
+DJF;DJF;0;Djibouti Franc;Djibouti Franc
+DKK;DKK;2;Danish Krone;Danish Krone
+DOP;DOP;2;Dominican Peso;Dominican Peso
+DZD;DZD;2;Algerian Dinar;Algerian Dinar
+EGP;EGP;2;Egyptian Pound;Egyptian Pound
+ERN;ERN;2;Nakfa;Nakfa
+ETB;ETB;2;Ethiopian Birr;Ethiopian Birr
+EUR;€;2;Euro;Euro
+FJD;FJD;2;Fiji Dollar;Fiji Dollar
+FKP;FKP;2;Falkland Islands Pound;Falkland Islands Pound
+GBP;£;2;Pound Sterling;Pound Sterling
+GEL;GEL;2;Lari;Lari
+GHS;GHS;2;Ghana Cedi;Ghana Cedi
+GIP;GIP;2;Gibraltar Pound;Gibraltar Pound
+GMD;GMD;2;Dalasi;Dalasi
+GNF;GNF;0;Guinean Franc;Guinean Franc
+GTQ;GTQ;2;Quetzal;Quetzal
+GYD;GYD;2;Guyana Dollar;Guyana Dollar
+HKD;HK$;2;Hong Kong Dollar;Hong Kong Dollar
+HNL;HNL;2;Lempira;Lempira
+HRK;HRK;2;Kuna;Kuna
+HTG;HTG;2;Gourde;Gourde
+HUF;HUF;2;Forint;Forint
+IDR;IDR;2;Rupiah;Rupiah
+ILS;₪;2;New Israeli Sheqel;New Israeli Sheqel
+INR;₹;2;Indian Rupee;Indian Rupee
+IQD;IQD;0;Iraqi Dinar;Iraqi Dinar
+IRR;IRR;0;Iranian Rial;Iranian Rial
+ISK;ISK;0;Iceland Krona;Iceland Krona
+JMD;JMD;2;Jamaican Dollar;Jamaican Dollar
+JOD;JOD;3;Jordanian Dinar;Jordanian Dinar
+JPY;¥;0;Yen;Yen
+KES;KES;2;Kenyan Shilling;Kenyan Shilling
+KGS;KGS;2;Som;Som
+KHR;KHR;2;Riel;Riel
+KMF;KMF;0;Comorian Franc;Comorian Franc
+KPW;KPW;0;North Korean Won;North Korean Won
+KRW;₩;0;Won;Won
+KWD;KWD;3;Kuwaiti Dinar;Kuwaiti Dinar
+KYD;KYD;2;Cayman Islands Dollar;Cayman Islands Dollar
+KZT;KZT;2;Tenge;Tenge
+LAK;LAK;0;Lao Kip;Lao Kip
+LBP;LBP;0;Lebanese Pound;Lebanese Pound
+LKR;LKR;2;Sri Lanka Rupee;Sri Lanka Rupee
+LRD;LRD;2;Liberian Dollar;Liberian Dollar
+LSL;LSL;2;Loti;Loti
+LYD;LYD;3;Libyan Dinar;Libyan Dinar
+MAD;MAD;2;Moroccan Dirham;Moroccan Dirham
+MDL;MDL;2;Moldovan Leu;Moldovan Leu
+MGA;MGA;0;Malagasy Ariary;Malagasy Ariary
+MKD;MKD;2;Denar;Denar
+MMK;MMK;0;Kyat;Kyat
+MNT;MNT;2;Tugrik;Tugrik
+MOP;MOP;2;Pataca;Pataca
+MRU;MRU;2;Ouguiya;Ouguiya
+MUR;MUR;2;Mauritius Rupee;Mauritius Rupee
+MVR;MVR;2;Rufiyaa;Rufiyaa
+MWK;MWK;2;Malawi Kwacha;Malawi Kwacha
+MXN;MX$;2;Mexican Peso;Mexican Peso
+MXV;MXV;2;Mexican Unidad de Inversion (UDI);Mexican Unidad de Inversion (UDI)
+MYR;MYR;2;Malaysian Ringgit;Malaysian Ringgit
+MZN;MZN;2;Mozambique Metical;Mozambique Metical
+NAD;NAD;2;Namibia Dollar;Namibia Dollar
+NGN;NGN;2;Naira;Naira
+NIO;NIO;2;Cordoba Oro;Cordoba Oro
+NOK;NOK;2;Norwegian Krone;Norwegian Krone
+NPR;NPR;2;Nepalese Rupee;Nepalese Rupee
+NZD;NZ$;2;New Zealand Dollar;New Zealand Dollar
+OMR;OMR;3;Rial Omani;Rial Omani
+PAB;PAB;2;Balboa;Balboa
+PEN;PEN;2;Sol;Sol
+PGK;PGK;2;Kina;Kina
+PHP;₱;2;Philippine Peso;Philippine Peso
+PKR;PKR;2;Pakistan Rupee;Pakistan Rupee
+PLN;PLN;2;Zloty;Zloty
+PYG;PYG;0;Guarani;Guarani
+QAR;QAR;2;Qatari Rial;Qatari Rial
+RON;RON;2;Romanian Leu;Romanian Leu
+RSD;RSD;0;Serbian Dinar;Serbian Dinar
+RUB;RUB;2;Russian Ruble;Russian Ruble
+RWF;RWF;0;Rwanda Franc;Rwanda Franc
+SAR;SAR;2;Saudi Riyal;Saudi Riyal
+SBD;SBD;2;Solomon Islands Dollar;Solomon Islands Dollar
+SCR;SCR;2;Seychelles Rupee;Seychelles Rupee
+SDG;SDG;2;Sudanese Pound;Sudanese Pound
+SEK;SEK;2;Swedish Krona;Swedish Krona
+SGD;SGD;2;Singapore Dollar;Singapore Dollar
+SHP;SHP;2;Saint Helena Pound;Saint Helena Pound
+SLE;SLE;2;Leone;Leone
+SLL;SLL;0;Leone;Leone
+SOS;SOS;0;Somali Shilling;Somali Shilling
+SRD;SRD;2;Surinam Dollar;Surinam Dollar
+SSP;SSP;2;South Sudanese Pound;South Sudanese Pound
+STN;STN;2;Dobra;Dobra
+SVC;SVC;2;El Salvador Colon;El Salvador Colon
+SYP;SYP;0;Syrian Pound;Syrian Pound
+SZL;SZL;2;Lilangeni;Lilangeni
+THB;THB;2;Baht;Baht
+TJS;TJS;2;Somoni;Somoni
+TMT;TMT;2;Turkmenistan New Manat;Turkmenistan New Manat
+TND;TND;3;Tunisian Dinar;Tunisian Dinar
+TOP;TOP;2;Pa’anga;Pa’anga
+TRY;TRY;2;Turkish Lira;Turkish Lira
+TTD;TTD;2;Trinidad and Tobago Dollar;Trinidad and Tobago Dollar
+TWD;NT$;2;New Taiwan Dollar;New Taiwan Dollar
+TZS;TZS;2;Tanzanian Shilling;Tanzanian Shilling
+UAH;UAH;2;Hryvnia;Hryvnia
+UGX;UGX;0;Uganda Shilling;Uganda Shilling
+USD;$;2;US Dollar;US Dollar
+USN;USN;2;US Dollar (Next day);US Dollar (Next day)
+UYI;UYI;0;Uruguay Peso en Unidades Indexadas (UI);Uruguay Peso en Unidades Indexadas (UI)
+UYU;UYU;2;Peso Uruguayo;Peso Uruguayo
+UYW;UYW;4;Unidad Previsional;Unidad Previsional
+UZS;UZS;2;Uzbekistan Sum;Uzbekistan Sum
+VED;VED;2;Bolívar Soberano;Bolívar Soberano
+VES;VES;2;Bolívar Soberano;Bolívar Soberano
+VND;₫;0;Dong;Dong
+VUV;VUV;0;Vatu;Vatu
+WST;WST;2;Tala;Tala
+XAF;FCFA;0;CFA Franc BEAC;CFA Franc BEAC
+XAG;XAG;2;Silver;Silver
+XAU;XAU;2;Gold;Gold
+XBA;XBA;2;Bond Markets Unit European Composite Unit (EURCO);Bond Markets Unit European Composite Unit (EURCO)
+XBB;XBB;2;Bond Markets Unit European Monetary Unit (E.M.U.-6);Bond Markets Unit European Monetary Unit (E.M.U.-6)
+XBC;XBC;2;Bond Markets Unit European Unit of Account 9 (E.U.A.-9);Bond Markets Unit European Unit of Account 9 (E.U.A.-9)
+XBD;XBD;2;Bond Markets Unit European Unit of Account 17 (E.U.A.-17);Bond Markets Unit European Unit of Account 17 (E.U.A.-17)
+XCD;EC$;2;East Caribbean Dollar;East Caribbean Dollar
+XDR;XDR;2;SDR (Special Drawing Right);SDR (Special Drawing Right)
+XOF;F CFA;0;CFA Franc BCEAO;CFA Franc BCEAO
+XPD;XPD;2;Palladium;Palladium
+XPF;CFPF;0;CFP Franc;CFP Franc
+XPT;XPT;2;Platinum;Platinum
+XSU;XSU;2;Sucre;Sucre
+XTS;XTS;2;Codes specifically reserved for testing purposes;Codes specifically reserved for testing purposes
+XUA;XUA;2;ADB Unit of Account;ADB Unit of Account
+XXX;¤;2;The codes assigned for transactions where no currency is involved;The codes assigned for transactions where no currency is involved
+YER;YER;0;Yemeni Rial;Yemeni Rial
+ZAR;ZAR;2;Rand;Rand
+ZMW;ZMW;2;Zambian Kwacha;Zambian Kwacha
+ZWL;ZWL;2;Zimbabwe Dollar;Zimbabwe Dollar

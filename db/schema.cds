@@ -10,7 +10,7 @@ entity Customer : managed {
    Country      : String(20);
    Email        : String(30);
    PhoneNumber  : String(20);
-   orders       : Association to many SalesOrder
+   orders       : Composition of many SalesOrder
                   on orders.customer = $self;
 }
 
