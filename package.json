@@ -4,17 +4,22 @@
   "dependencies": {
     "@cap-js/hana": "^3.1.2",
     "@sap/approuter": "23.3.0",
-    "@sap/cds": "^10",
+    "@sap/cds": "^10.1.1",
     "@sap/xssec": "^4.15.0"
   },
   "devDependencies": {
     "@cap-js/sqlite": "^3",
-    "@sap/cds-dk": "^7.1.1",
-    "cds-plugin-ui5": "^0.17.0"
+    "@sap/cds-dk": "^9.9.6",
+    "cds-plugin-ui5": "^0.17.0",
+    "rimraf": "^5.0.5",
+    "mbt": "^1.2.49"
   },
   "scripts": {
     "start": "cds-serve",
-    "watch-salesorder": "cds watch --open ds.sales.salesorder/index.html?sap-ui-xx-viewCache=false --livereload false"
+    "watch-salesorder": "cds watch --open ds.sales.salesorder/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "undeploy": "cf undeploy sales --delete-services --delete-service-keys --delete-service-brokers",
+    "build": "rimraf resources mta_archives && mbt build --mtar archive",
+    "deploy": "cf deploy mta_archives/archive.mtar --retries 1"
   },
   "private": true,
   "cds": {

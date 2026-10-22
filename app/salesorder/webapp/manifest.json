@@ -24,6 +24,20 @@
           "odataVersion": "4.0"
         }
       }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "salesOrder-display": {
+          "semanticObject": "salesOrder",
+          "action": "display",
+          "title": "{{salesOrder-display.flpTitle}}",
+          "subTitle": "{{salesOrder-display.flpSubtitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
     }
   },
   "sap.ui": {

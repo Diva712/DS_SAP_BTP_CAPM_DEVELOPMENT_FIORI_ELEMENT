@@ -7,7 +7,7 @@
       "source": "^/webapp/(.*)$",
       "target": "$1",
       "localDir": "webapp",
-      "authenticationType": "none"
+      "authenticationType": "xsuaa"
     },
     {
       "source": "^/odata/v4/(.*)$",
