@@ -14,6 +14,22 @@ annotate service.CustomerSet with {
     createdBy    @Common.Label: 'Created By'
 };
 
+annotate service.CustomerSet with {
+    Cust_id@(
+        Core.Computed,
+        Common.FieldControl: #ReadOnly
+    )
+};
+
+annotate service.OrderSet with{
+    Order_Id@(
+        Core.Computed,
+        Common.FieldControl: #ReadOnly
+    )
+} ;
+
+
+
 annotate service.OrderSet with {
     Order_Id      @Common.Label: 'Order ID';
     Currency_code @Common.Label: 'Currency';

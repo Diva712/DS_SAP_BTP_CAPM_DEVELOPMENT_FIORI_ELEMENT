@@ -15,7 +15,7 @@ entity Customer : managed {
 }
 
 entity SalesOrder : managed  {
-    key Order_Id : String(10);
+    key Order_Id : String(30);
         OrderDate : Date;
         customer : Association to Customer;
         Status   : String(10);
@@ -34,5 +34,10 @@ entity SalesOrderItem {
         UOM         : String(3);
         NetPrice    : Decimal(10, 2);
         Currency    : Currency;
+}
+
+entity Counters{
+    key name: String(10);
+        value: Integer
 }
 

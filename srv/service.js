@@ -16,6 +16,21 @@ module.exports = cds.service.impl(function () {
     //     )
     // });
 
+    this.before('NEW', 'CustomerSet.drafts', async (req)=>{
+        const tx = cds.tx(req);
+        await tx.run(UPDATE ('ds.salesapp.Counters').set({value: {'+=': 1}}).where({name: 'Customer'}))
+        const {value} = await tx.run(SELECT.one.from('ds.salesapp.Counters').where({name: 'Customer'}))
+        req.data.Cust_id = `CUST${value}`;
+    });
+
+    this.before('NEW', 'OrderSet.drafts', async (req)=>{
+        const tx = cds.tx(req);
+        await tx.run(UPDATE ('ds.salesapp.Counters').set({value: {'+=': 1}}).where({name: 'Order'}))
+        const {value} = await tx.run(SELECT.one.from('ds.salesapp.Counters').where({name: 'Order'}))
+        const cust_id = req.data.customer_Cust_id;
+        req.data.Order_Id = `${cust_id}SO${value}`;
+    });
+
         this.before('NEW', 'ItemSet.drafts', async (req) => {
         const { Parent_Order_Id } = req.data;
         const existingItems = await SELECT.from('CatalogService.ItemSet.drafts')
