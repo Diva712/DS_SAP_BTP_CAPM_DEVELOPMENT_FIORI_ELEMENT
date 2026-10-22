@@ -1,0 +1,50 @@
+ID;countryName;cityName
+1;INDIA;New Delhi
+2;INDIA;Mumbai
+3;INDIA;Bangalore
+4;INDIA;Hyderabad
+5;INDIA;Chennai
+6;INDIA;Kolkata
+7;INDIA;Pune
+8;USA;New York
+9;USA;Los Angeles
+10;USA;Chicago
+11;USA;Houston
+12;USA;Phoenix
+13;USA;Philadelphia
+14;USA;San Antonio
+15;JAPAN;Tokyo
+16;JAPAN;Osaka
+17;JAPAN;Kyoto
+18;JAPAN;Nagoya
+19;JAPAN;Sapporo
+20;JAPAN;Fukuoka
+21;JAPAN;Yokohama
+22;GERMANY;Berlin
+23;GERMANY;Hamburg
+24;GERMANY;Munich
+25;GERMANY;Cologne
+26;GERMANY;Frankfurt
+27;GERMANY;Stuttgart
+28;GERMANY;Dusseldorf
+29;UK;London
+30;UK;Manchester
+31;UK;Birmingham
+32;UK;Glasgow
+33;UK;Liverpool
+34;UK;Leeds
+35;UK;Edinburgh
+36;AUSTRALIA;Sydney
+37;AUSTRALIA;Melbourne
+38;AUSTRALIA;Brisbane
+39;AUSTRALIA;Perth
+40;AUSTRALIA;Adelaide
+41;AUSTRALIA;Gold Coast
+42;AUSTRALIA;Canberra
+43;FRANCE;Paris
+44;FRANCE;Marseille
+45;FRANCE;Lyon
+46;FRANCE;Toulouse
+47;FRANCE;Nice
+48;FRANCE;Nantes
+49;FRANCE;Strasbourg

@@ -71,6 +71,14 @@ service CatalogService @(
         }
     ]) as projection on db.SalesOrderItem;
 
+    @readonly
+    entity cityValueHelpSet as projection on db.Cities;
+
+    @readonly
+    entity uniqueCountries as select from db.Cities{
+        key countryName,
+    }group by countryName;
+
     action   cancelOpenOrderForDate(day: Integer, month: Integer, year: Integer) returns String;
 
     @requires: 'Editor'

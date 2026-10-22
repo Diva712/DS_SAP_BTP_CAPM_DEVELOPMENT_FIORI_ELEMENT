@@ -29,6 +29,32 @@ annotate service.OrderSet with{
 } ;
 
 
+annotate service.CustomerSet with{
+    Country @Common.ValueList:{
+        CollectionPath: 'uniqueCountries',
+        Parameters : [{
+            $Type : 'Common.ValueListParameterInOut',
+            LocalDataProperty: Country,
+            ValueListProperty: 'countryName'
+        }]
+    };
+      City @Common.ValueList:{
+        CollectionPath: 'cityValueHelpSet',
+        Parameters : [{
+            $Type : 'Common.ValueListParameterIn',
+            LocalDataProperty: Country,
+            ValueListProperty: 'countryName'
+        },
+        {
+            $Type : 'Common.ValueListParameterInOut',
+            LocalDataProperty: City,
+            ValueListProperty: 'cityName'
+        }
+        ]
+    }
+} ;
+
+
 
 annotate service.OrderSet with {
     Order_Id      @Common.Label: 'Order ID';

@@ -41,3 +41,9 @@ entity Counters{
         value: Integer
 }
 
+entity Cities{
+    key ID: UUID;
+    countryName: String(50);
+    cityName: String(50);
+}
+
