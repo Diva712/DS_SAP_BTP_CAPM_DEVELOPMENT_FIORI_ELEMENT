@@ -7,7 +7,7 @@ annotate service.CustomerSet with {
     Country      @Common.Label: 'Country';
     Email        @Common.Label: 'Email';
     PhoneNumber  @Common.Label: 'Phone';
-    Address @Common.Label: 'Address';
+    Address      @Common.Label: 'Address';
     modifiedAt   @Common.Label: 'Changed At';
     modifiedBy   @Common.Label: 'Changed By';
     createdAt    @Common.Label: 'Created At';
@@ -15,66 +15,57 @@ annotate service.CustomerSet with {
 };
 
 annotate service.CustomerSet with {
-    Cust_id@(
+    Cust_id      @(
         Core.Computed,
         Common.FieldControl: #ReadOnly
     );
-     CustomerName@(
-        Common.FieldControl: #Mandatory
-    );
-       PhoneNumber@(
-        Common.FieldControl: #Mandatory
-    );
-       Email@(
-        Common.FieldControl: #Mandatory
-    );
-    
+    CustomerName @(Common.FieldControl: #Mandatory);
+    PhoneNumber  @(Common.FieldControl: #Mandatory);
+    Email        @(Common.FieldControl: #Mandatory);
+
 };
 
 
 annotate service.OrderSet with {
-        Order_Id @(
-                Core.Computed,
-                Common.FieldControl: #ReadOnly
-        );
-        NetValue @(
-                Common.FieldControl: #ReadOnly
-        )
+    Order_Id @(
+        Core.Computed,
+        Common.FieldControl: #ReadOnly
+    );
+    NetValue @(Common.FieldControl: #ReadOnly)
 };
 
 annotate service.OrderSet with @(Common.SideEffects: {
-        SourceEntities :[Items],
-        TargetProperties : [
-            'NetValue',
-        ],
+    SourceEntities  : [Items],
+    TargetProperties: ['NetValue',
+    ],
 });
 
 
-annotate service.CustomerSet with{
-    Country @Common.ValueList:{
+annotate service.CustomerSet with {
+    Country @Common.ValueList: {
         CollectionPath: 'uniqueCountries',
-        Parameters : [{
-            $Type : 'Common.ValueListParameterInOut',
+        Parameters    : [{
+            $Type            : 'Common.ValueListParameterInOut',
             LocalDataProperty: Country,
             ValueListProperty: 'countryName'
         }]
     };
-      City @Common.ValueList:{
+    City    @Common.ValueList: {
         CollectionPath: 'cityValueHelpSet',
-        Parameters : [{
-            $Type : 'Common.ValueListParameterIn',
-            LocalDataProperty: Country,
-            ValueListProperty: 'countryName'
-        },
-        {
-            $Type : 'Common.ValueListParameterInOut',
-            LocalDataProperty: City,
-            ValueListProperty: 'cityName'
-        }
+        Parameters    : [
+            {
+                $Type            : 'Common.ValueListParameterIn',
+                LocalDataProperty: Country,
+                ValueListProperty: 'countryName'
+            },
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: City,
+                ValueListProperty: 'cityName'
+            }
         ]
     }
-} ;
-
+};
 
 
 annotate service.OrderSet with {
@@ -100,12 +91,19 @@ annotate service.ItemSet with {
 };
 
 
-
 annotate service.CustomerSet with @(
     UI.SelectionFields        : [
         Cust_id,
         CustomerName,
         City
+    ],
+
+    UI.Identification :[
+        {
+            $Type: 'UI.DataFieldForAction',
+            Action: 'CatalogService.customerLoyaltyLevel',
+            Label: 'Check Customer Loyalty'
+        }
     ],
 
     UI.LineItem               : [
@@ -114,7 +112,12 @@ annotate service.CustomerSet with @(
         {Value: City},
         {Value: Country},
         {Value: PhoneNumber},
-        {Value: Email}
+        {Value: Email},
+        {
+            $Type : 'UI.DataFieldForAction',
+            Action: 'CatalogService.customerLoyaltyLevel',
+            Label : 'Check Customer Loyalty'
+        }
     ],
 
     UI.HeaderInfo             : {
@@ -168,14 +171,19 @@ annotate service.CustomerSet with @(
 
 
 annotate service.OrderSet with @(
-    UI.LineItem               : [
+    UI.LineItem                    : [
         {Value: Order_Id},
         {Value: OrderDate, },
         {Value: NetValue},
         {Value: Currency_code},
-        {Value: Status}
+        {Value: Status},
+        {
+            $Type : 'UI.DataFieldForAction',
+            Action: 'CatalogService.markOrderAsPaid',
+            Label : 'Mark Order As Paid'
+        }
     ],
-    UI.HeaderInfo             : {
+    UI.HeaderInfo                  : {
         TypeName      : 'Sales Order',
         TypeNamePlural: 'Sales Orders',
         Title         : {Value: Order_Id},
@@ -183,7 +191,7 @@ annotate service.OrderSet with @(
     },
 
 
-    UI.Facets                 : [
+    UI.Facets                      : [
         {
             $Type : 'UI.CollectionFacet',
             Label : 'Sales Order Info',
@@ -236,22 +244,13 @@ annotate service.ItemSet with @(UI.LineItem: [
 ], );
 
 annotate service.ItemSet with {
-    LineTotal@(
-        Common.FieldControl: #ReadOnly
-    )
+    LineTotal @(Common.FieldControl: #ReadOnly)
 };
 
-annotate service.ItemSet with @(
-    Common.SideEffects:{
-        SourceProperties:[
-            Quantity,
-            NetPrice
-        ],
-        TargetProperties:[
-            'LineTotal'
-        ]
-    }
-);
-
-
-
+annotate service.ItemSet with @(Common.SideEffects: {
+    SourceProperties: [
+        Quantity,
+        NetPrice
+    ],
+    TargetProperties: ['LineTotal']
+});

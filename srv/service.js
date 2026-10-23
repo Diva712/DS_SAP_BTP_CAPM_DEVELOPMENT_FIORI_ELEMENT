@@ -125,7 +125,7 @@ module.exports = cds.service.impl(function () {
     });
 
     this.on('markOrderAsPaid', 'OrderSet', async (req) => {
-        const id = req.params[0].Order_Id;
+        const id = req.params[1].Order_Id;
         const tx = cds.tx(req);
 
         await tx.run(
@@ -152,32 +152,54 @@ module.exports = cds.service.impl(function () {
         return { message: `${updatedOrders} orders are cancelled for ${day}-${month}-${year}` };
     });
 
+
     this.on('customerLoyaltyLevel', 'CustomerSet', async (req) => {
-        const id = req.params[0].Cust_id;
-        const tx = cds.tx(req);
 
-        const today = new Date();
-        const oneYearAgo = new Date(today.setFullYear(today.getFullYear() - 1));
+    const id = req.params[0].Cust_id;
+    const tx = cds.tx(req);
 
-        const { Total } = await tx.run(
-            SELECT.one.from('ds.salesapp.SalesOrder')
-                .columns('sum(NetValue) as Total')
-                .where({ customer_Cust_id: id, OrderDate: { '>=': oneYearAgo.toISOString() } })
-        );
+    const today = new Date();
+    const oneYearAgo = new Date();
+    oneYearAgo.setFullYear(today.getFullYear() - 1);
 
-        if (Total > 50000) {
-            return `HUrray !! It is Platnium CUstomer : PLease offer a 20% discount : 
-                        (Total Purchased value in last 1 year is ${Total})`;
-        }
-        else if (Total > 20000) {
-            return `HUrray !! It is GOld CUstomer : PLease offer a 10% discount : 
-                        (Total Purchased value in last 1 year is ${Total})`;
-        }
-        else {
-            return ` It is General CUstomer : No discount : 
-                        (Total Purchased value in last 1 year is ${Total})`;
-        }
-    });
+    // Date field ke liye yyyy-mm-dd format
+    const fromDate = oneYearAgo.toISOString().split('T')[0];
+
+    const result = await tx.run(
+        SELECT.one
+            .from('ds.salesapp.SalesOrder')
+            .columns('sum(NetValue) as Total')
+            .where({
+                customer_Cust_id: id,
+                OrderDate: { '>=': fromDate }
+            })
+    );
+
+    const total = Number(result?.Total || 0);
+
+    let message = "";
+
+    if (total > 5000) {
+        message =
+            `HUrray !! It is Platinum Customer (${id}) : Please offer a 20% discount.
+(Total Purchased value in last 1 year is ${total})`;
+    }
+    else if (total > 2000) {
+        message =
+            `HUrray !! It is Gold Customer (${id}) : Please offer a 10% discount.
+(Total Purchased value in last 1 year is ${total})`;
+    }
+    else {
+        message =
+            `It is General Customer (${id}) : No discount.
+(Total Purchased value in last 1 year is ${total})`;
+    }
+
+    req.info(message);
+    return message;
+});
+
+
 
     this.on('totalSales', async (req) => {
         const { year } = req.data;
