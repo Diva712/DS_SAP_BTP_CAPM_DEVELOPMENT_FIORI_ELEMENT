@@ -23,12 +23,46 @@ module.exports = cds.service.impl(function () {
         req.data.Cust_id = `CUST${value}`;
     });
 
+    this.before('SAVE', 'CustomerSet.drafts', (req) => {
+    if (!req.data.CustomerName) {
+        req.error(400, 'Customer Name is mandatory', 'in/CustomerName');
+    }
+});
+
+this.before('SAVE', 'CustomerSet.drafts', (req) => {
+
+    const { Email, PhoneNumber } = req.data;
+
+    if (!Email) {
+        req.error(400, 'Email is mandatory', 'in/Email');
+    } else {
+        const emailRegEx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!emailRegEx.test(Email)) {
+            req.error(400, 'Enter a valid email', 'in/Email');
+        }
+    }
+
+    if (!PhoneNumber) {
+        req.error(400, 'Phone Number is mandatory', 'in/PhoneNumber');
+    } else {
+        const phoneRegEx = /^\+?[0-9]{10,15}$/;
+
+        if (!phoneRegEx.test(PhoneNumber)) {
+            req.error(400, 'Enter a valid Phone Number', 'in/PhoneNumber');
+        }
+    }
+});
+
     this.before('NEW', 'OrderSet.drafts', async (req)=>{
         const tx = cds.tx(req);
         await tx.run(UPDATE ('ds.salesapp.Counters').set({value: {'+=': 1}}).where({name: 'Order'}))
         const {value} = await tx.run(SELECT.one.from('ds.salesapp.Counters').where({name: 'Order'}))
         const cust_id = req.data.customer_Cust_id;
         req.data.Order_Id = `${cust_id}SO${value}`;
+
+        req.data.Status = 'Open';
+        req.data.OrderDate = new Date();
     });
 
         this.before('NEW', 'ItemSet.drafts', async (req) => {

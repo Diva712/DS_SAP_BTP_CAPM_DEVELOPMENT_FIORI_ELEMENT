@@ -18,7 +18,17 @@ annotate service.CustomerSet with {
     Cust_id@(
         Core.Computed,
         Common.FieldControl: #ReadOnly
-    )
+    );
+     CustomerName@(
+        Common.FieldControl: #Mandatory
+    );
+       PhoneNumber@(
+        Common.FieldControl: #Mandatory
+    );
+       Email@(
+        Common.FieldControl: #Mandatory
+    );
+    
 };
 
 annotate service.OrderSet with{
