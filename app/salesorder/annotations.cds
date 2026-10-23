@@ -31,12 +31,23 @@ annotate service.CustomerSet with {
     
 };
 
-annotate service.OrderSet with{
-    Order_Id@(
-        Core.Computed,
-        Common.FieldControl: #ReadOnly
-    )
-} ;
+
+annotate service.OrderSet with {
+        Order_Id @(
+                Core.Computed,
+                Common.FieldControl: #ReadOnly
+        );
+        NetValue @(
+                Common.FieldControl: #ReadOnly
+        )
+};
+
+annotate service.OrderSet with @(Common.SideEffects: {
+        SourceEntities :[Items],
+        TargetProperties : [
+            'NetValue',
+        ],
+});
 
 
 annotate service.CustomerSet with{
@@ -87,6 +98,8 @@ annotate service.ItemSet with {
     NetPrice    @Common.Label: 'Net Price';
     Currency    @Common.Label: 'Currency'
 };
+
+
 
 annotate service.CustomerSet with @(
     UI.SelectionFields        : [
@@ -218,5 +231,27 @@ annotate service.ItemSet with @(UI.LineItem: [
     {Value: Quantity},
     {Value: UOM},
     {Value: NetPrice},
+    {Value: LineTotal},
     {Value: Currency_code}
-], )
+], );
+
+annotate service.ItemSet with {
+    LineTotal@(
+        Common.FieldControl: #ReadOnly
+    )
+};
+
+annotate service.ItemSet with @(
+    Common.SideEffects:{
+        SourceProperties:[
+            Quantity,
+            NetPrice
+        ],
+        TargetProperties:[
+            'LineTotal'
+        ]
+    }
+);
+
+
+

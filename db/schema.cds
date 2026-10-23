@@ -33,6 +33,7 @@ entity SalesOrderItem {
         Quantity    : Integer;
         UOM         : String(3);
         NetPrice    : Decimal(10, 2);
+        LineTotal   : Decimal(10,2);
         Currency    : Currency;
 }
 
