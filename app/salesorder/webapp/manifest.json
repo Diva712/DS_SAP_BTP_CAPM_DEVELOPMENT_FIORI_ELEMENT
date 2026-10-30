@@ -133,6 +133,16 @@
                 "@com.sap.vocabularies.UI.v1.LineItem": {
                   "tableSettings": {
                     "type": "GridTable"
+                  },
+                  "actions":{
+                    "TotalSales":{
+                      "text": "Total Sales",
+                      "press":"ds.sales.salesorder.ext.MainExtension.totalSales"
+                    },
+                    "CancelOrders":{
+                      "text": "Cancel Open Orders",
+                      "press": "ds.sales.salesorder.ext.MainExtension.cancelOpenOrders"
+                    }
                   }
                 }
               },

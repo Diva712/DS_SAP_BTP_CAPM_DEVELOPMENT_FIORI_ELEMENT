@@ -149,7 +149,7 @@ module.exports = cds.service.impl(function () {
                 .set({ Status: 'Cancelled' })
                 .where({ Status: 'Open', OrderDate: formatDate })
         );
-        return { message: `${updatedOrders} orders are cancelled for ${day}-${month}-${year}` };
+        return `${updatedOrders} orders are cancelled for ${day}-${month}-${year}`;
     });
 
 
