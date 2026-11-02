@@ -1,2 +1,153 @@
-<h1>heelo world</h1>
+<!DOCTYPE html>
+<html>
 
+<head>
+
+    <title>Sales Management Portal</title>
+
+    <meta charset="utf-8">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+
+            font-family: Arial, sans-serif;
+
+            height:100vh;
+
+            display:flex;
+
+            align-items:center;
+
+            justify-content:center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0a6ed1,
+                    #0d47a1
+                );
+        }
+
+        .container{
+
+            background:white;
+
+            width:700px;
+
+            padding:50px;
+
+            text-align:center;
+
+            border-radius:20px;
+
+            box-shadow:
+                0 10px 30px rgba(0,0,0,.2);
+        }
+
+        h1{
+
+            color:#0a6ed1;
+
+            margin-bottom:20px;
+        }
+
+        p{
+
+            color:#666;
+
+            margin-bottom:40px;
+
+            font-size:18px;
+        }
+
+        .app-card{
+
+            border:1px solid #ddd;
+
+            padding:25px;
+
+            border-radius:12px;
+        }
+
+        .btn{
+
+            display:inline-block;
+
+            margin-top:20px;
+
+            padding:
+                12px
+                25px;
+
+            background:#0a6ed1;
+
+            color:white;
+
+            text-decoration:none;
+
+            border-radius:8px;
+
+            font-weight:bold;
+        }
+
+        .btn:hover{
+
+            background:#0854a0;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Sales Management Portal</h1>
+
+    <p>
+        SAP CAP + Fiori Sales Management Suite
+    </p>
+
+    <div class="app-card">
+
+        <h2>Sales Order Application</h2>
+
+        <p>
+            Manage Customers, Orders and Items
+        </p>
+
+        <!-- <a
+           class="btn"
+           href="/salesorder/">
+
+           Open Sales Order App
+
+        </a> -->
+<!-- 
+<a class="btn"
+   href="/site#salesOrder-display">
+   Open Sales Order Application
+</a> -->
+
+<!-- <a class="btn"
+   href="/salesorder/index.html">
+   Open Sales Order Application
+</a> -->
+<a class="btn"
+   href="/applications/cdm/dssalessalesorder/index.html">
+   Open Sales Order Application
+</a>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -134,12 +134,12 @@
                   "tableSettings": {
                     "type": "GridTable"
                   },
-                  "actions":{
-                    "TotalSales":{
+                  "actions": {
+                    "TotalSales": {
                       "text": "Total Sales",
-                      "press":"ds.sales.salesorder.ext.MainExtension.totalSales"
+                      "press": "ds.sales.salesorder.ext.MainExtension.totalSales"
                     },
-                    "CancelOrders":{
+                    "CancelOrders": {
                       "text": "Cancel Open Orders",
                       "press": "ds.sales.salesorder.ext.MainExtension.cancelOpenOrders"
                     }

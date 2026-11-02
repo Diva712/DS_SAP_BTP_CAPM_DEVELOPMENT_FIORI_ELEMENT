@@ -1,89 +1,187 @@
 _schema-version: 3.3.0
 ID: sales
+description: A simple CAP project.
 version: 1.0.0
-description: "A simple CAP project."
+modules:
+- name: sales-srv
+  type: nodejs
+  path: gen/srv
+  requires:
+  - name: sales-db
+  - name: sales-auth
+  provides:
+  - name: srv-api
+    properties:
+      srv-url: ${default-url}
+  parameters:
+    buildpack: nodejs_buildpack
+    instances: 1
+  build-parameters:
+    builder: npm-ci
+- name: sales-db-deployer
+  type: hdb
+  path: gen/db
+  requires:
+  - name: sales-db
+  parameters:
+    buildpack: nodejs_buildpack
+- name: sales-destination-content
+  type: com.sap.application.content
+
+  requires:
+    - name: sales-destination
+      parameters:
+        content-target: true
+
+    - name: sales-html5-repo-host
+      parameters:
+        service-key:
+          name: sales-html5-repo-host-key
+
+    - name: sales-auth
+      parameters:
+        service-key:
+          name: sales-auth-key
+
+  parameters:
+    content:
+      instance:
+        destinations:
+
+          - Name: sales_html_repo_host
+            ServiceInstanceName: sales-html5-repo-host
+            ServiceKeyName: sales-html5-repo-host-key
+            sap.cloud.service: sales
+
+          - Authentication: OAuth2UserTokenExchange
+            Name: sales_auth
+            ServiceInstanceName: sales-auth
+            ServiceKeyName: sales-auth-key
+            sap.cloud.service: sales
+
+        existing_destinations_policy: ignore
+
+  build-parameters:
+    no-source: true
+- name: sales-app
+  type: approuter.nodejs
+  path: app/router
+  requires:
+  - name: srv-api
+    group: destinations
+    properties:
+      forwardAuthToken: true
+      name: srv-api
+      url: ~{srv-url}
+  - name: sales-auth
+  - name: sales-html5-repo-runtime
+  - name: sales-destination
+  provides:
+  - name: app-api
+    properties:
+      app-protocol: ${protocol}
+      app-uri: ${default-uri}
+  parameters:
+    disk-quota: 256M
+    keep-existing-routes: true
+    memory: 256M
+- name: sales-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: sales-html5-repo-host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - dssalessalesorder.zip
+      name: dssalessalesorder
+      target-path: resources/
+- name: dssalessalesorder
+  type: html5
+  path: app/salesorder
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: sales-auth
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      oauth2-configuration:
+        credential-types:
+        - binding-secret
+        - x509
+        redirect-uris:
+        - https://*~{app-api/app-uri}/**
+      role-collections:
+      - description: generated
+        name: Editor (sales ${org}-${space})
+        role-template-references:
+        - $XSAPPNAME.Editor
+      - description: generated
+        name: Viewer (sales ${org}-${space})
+        role-template-references:
+        - $XSAPPNAME.Viewer
+      tenant-mode: dedicated
+      xsappname: sales-${org}-${space}
+    path: ./xs-security.json
+    service: xsuaa
+    service-plan: application
+  requires:
+  - name: app-api
+- name: sales-db
+  type: com.sap.xs.hdi-container
+  parameters:
+    service: hana
+    service-plan: hdi-shared
+- name: sales-html5-repo-host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-plan: app-host
+- name: sales-html5-repo-runtime
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-plan: app-runtime
+- name: sales-destination
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          - Authentication: NoAuthentication
+            HTML5.DynamicDestination: true
+            HTML5.ForwardAuthToken: true
+            Name: srv-api
+            ProxyType: Internet
+            Type: HTTP
+            URL: ~{srv-api/srv-url}
+          existing_destinations_policy: update
+    service: destination
+    service-plan: lite
+  requires:
+  - name: srv-api
 parameters:
+  deploy_mode: html5-repo
   enable-parallel-deployments: true
 build-parameters:
   before-all:
-    - builder: custom
-      commands:
-        - npm ci
-        - npx cds build --production
-modules:
-  - name: sales-srv
-    type: nodejs
-    path: gen/srv
-    parameters:
-      instances: 1
-      buildpack: nodejs_buildpack
-    build-parameters:
-      builder: npm-ci
-    provides:
-      - name: srv-api # required by consumers of CAP services (e.g. approuter)
-        properties:
-          srv-url: ${default-url}
-    requires:
-      - name: sales-db
-      - name: sales-auth
-
-  - name: sales-db-deployer
-    type: hdb
-    path: gen/db
-    parameters:
-      buildpack: nodejs_buildpack
-    requires:
-      - name: sales-db
-  - name: sales-app
-    type: approuter.nodejs
-    path: app/router
-    parameters:
-      keep-existing-routes: true
-      disk-quota: 256M
-      memory: 256M
-    requires:
-      - name: srv-api
-        group: destinations
-        properties:
-          name: srv-api # must be used in xs-app.json as well
-          url: ~{srv-url}
-          forwardAuthToken: true
-      - name: sales-auth
-    provides:
-      - name: app-api
-        properties:
-          app-protocol: ${protocol}
-          app-uri: ${default-uri}
-
-resources:
-  - name: sales-auth
-    type: org.cloudfoundry.managed-service
-    parameters:
-      service: xsuaa
-      service-plan: application
-      path: ./xs-security.json
-      config:
-        xsappname: sales-${org}-${space}
-        tenant-mode: dedicated
-        oauth2-configuration:
-          credential-types:
-            - "binding-secret"
-            - "x509"
-          redirect-uris:
-            - https://*~{app-api/app-uri}/**
-        role-collections:
-          - name: 'Editor (sales ${org}-${space})'
-            description: 'generated'
-            role-template-references:
-              - '$XSAPPNAME.Editor'
-          - name: 'Viewer (sales ${org}-${space})'
-            description: 'generated'
-            role-template-references:
-              - '$XSAPPNAME.Viewer'
-    requires:
-      - name: app-api
-  - name: sales-db
-    type: com.sap.xs.hdi-container
-    parameters:
-      service: hana
-      service-plan: hdi-shared
+  - builder: custom
+    commands:
+    - npm ci
+    - npx cds build --production

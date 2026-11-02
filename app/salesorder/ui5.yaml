@@ -1,0 +1,15 @@
+specVersion: "3.1"
+
+metadata:
+  name: ds.sales.salesorder
+
+type: application
+
+framework:
+  name: SAPUI5
+  version: "1.153.0"
+
+  libraries:
+    - name: sap.m
+    - name: sap.ui.core
+    - name: sap.fe.templates
