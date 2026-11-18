@@ -9,6 +9,7 @@ modules:
   requires:
   - name: sales-db
   - name: sales-auth
+  - name: sales-logging 
   provides:
   - name: srv-api
     properties:
@@ -110,6 +111,10 @@ modules:
     - npm run build:cf
     supported-platforms: []
 resources:
+- name: sales-logging
+  type: org.cloudfoundry.existing-service
+  parameters:
+    service-name: app-log-srv
 - name: sales-auth
   type: org.cloudfoundry.managed-service
   parameters:
